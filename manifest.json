@@ -1,0 +1,6 @@
+{
+    "name": "TimeIsMoney",
+    "version": "1.0",
+    "description": "Chrome extension that converts dollar amounts in webpage to time needed to make said dollar amount",
+    "manifest_version": 2
+}
