@@ -13,9 +13,13 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     if (request.action == "getHTMLSource") {
       message.innerText = request.source;
     }
+    /*
+        if(request.action == "getHTMLSource"){
+        MessageChannel.innerText = request.source;
+    }
+    */
   });
   
-
 chrome.runtime.onInstalled.addListener(function() {
     // add an action here
 });
