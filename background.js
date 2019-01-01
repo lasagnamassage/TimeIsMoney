@@ -1,36 +1,17 @@
-/**
- * Runs while extension is turned on.
- * This is where we check for dollar amounts and append
- * the necessary elements.
- */
-/*
-for(var i=0;i<all.length;i++){
-    if(all[i].textContent.indexOf("$")==0){
-console.log(all[i])}}
-*/
- 
-chrome.runtime.onMessage.addListener(function(request, sender) {
-    if (request.action == "getHTMLSource") {
-      message.innerText = request.source;
-    }
-    /*
-        if(request.action == "getHTMLSource"){
-        MessageChannel.innerText = request.source;
-    }
-    */
-  });
-  
-chrome.runtime.onInstalled.addListener(function() {
-    // add an action here
-});
+// Regex-pattern to check URLs against. 
+// It matches URLs like: http[s]://[...]stackoverflow.com[...]
+var urlRegex = /^https?:\/\/(?:[^./?#]+\.)?stackoverflow\.com/;
 
-
-/**
- * Stores the users wages.
- * @param {number} wage The user's wage per hour 
- */
-function setHourlyWage(wage) {
-    chrome.storage.sync.set({wage: wage}, () => {
-        console.log(`wage set to ${wage}`);
-    });
+// A function to use as callback
+function doStuffWithDom(domContent) {
+    console.log('I received the following DOM content:\n' + domContent);
 }
+
+// When the browser-action button is clicked...
+chrome.browserAction.onClicked.addListener(function (tab) {
+    // ...check the URL of the active tab against our pattern and...
+    if (urlRegex.test(tab.url)) {
+        // ...if it matches, send a message specifying a callback too
+        chrome.tabs.sendMessage(tab.id, {text: 'report_back'}, doStuffWithDom);
+    }
+});
