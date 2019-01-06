@@ -5,6 +5,19 @@
  */
 chrome.runtime.onInstalled.addListener(function() {
     // add an action here
+    console.log("Hello from the console!")
+    chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+        chrome.declarativeContent.onPageChanged.addRules([{
+            conditions: [new chrome.declarativeContent.PageStateMatcher({
+            pageUrl: {hostEquals: 'amazon.com'},
+            pageUrl: {hostEquals: 'ebay.com'},
+            pageUrl: {hostEquals: 'amazon.com'},
+            pageUrl: {hostEquals: 'redbubble.com'},
+            })
+            ],
+                actions: [new chrome.declarativeContent.ShowPageAction()]
+        }]);
+    });
 });
 
 
@@ -13,7 +26,7 @@ chrome.runtime.onInstalled.addListener(function() {
  * @param {number} wage The user's wage per hour 
  */
 function setHourlyWage() {
-    let wage = document.getElementById('mywage');
+    let wage = document.getElementById('mywage').innerHTML;
     console.log(`wage set to ${wage}`);
     chrome.storage.sync.set({wage: wage}, () => {
         console.log(`wage set to ${wage}`);

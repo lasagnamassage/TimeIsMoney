@@ -4,7 +4,7 @@
     "description": "Chrome extension that converts dollar amounts in webpage to time needed to make said dollar amount",
     "manifest_version": 2,
     "options_page": "options.html",
-    "permissions": ["storage"],
+    "permissions": ["storage", "declarativeContent"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false
