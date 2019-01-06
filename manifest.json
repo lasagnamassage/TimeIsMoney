@@ -9,7 +9,7 @@
         "scripts": ["background.js"],
         "persistent": false
       },
-    "browser_action"  :  {
+    "page_action"  :  {
         "default_title": "My cool plugin",
         "default_icon": {
             "16": "icons/icon16.png",
