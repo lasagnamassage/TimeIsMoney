@@ -13,16 +13,18 @@ const accepted_merchants_list = [
 
 let rules = [];
 
-for(let i = 0; i < accepted_merchants_list.length; i++) {
-    rules.push(new chrome.declarativeContent.PageStateMatcher({ pageUrl: { hostEquals: accepted_merchants_list[i]}}));
-}
+// for(let i = 0; i < accepted_merchants_list.length; i++) {
+//     rules.push(new chrome.declarativeContent.PageStateMatcher({ pageUrl: { hostEquals: accepted_merchants_list[i]}}));
+// }
 
 chrome.runtime.onInstalled.addListener(function() {
     // add an action here
     console.log("Hello from the console!")
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
         chrome.declarativeContent.onPageChanged.addRules([{
-            conditions: this.rules,
+            conditions: [new chrome.declarativeContent.PageStateMatcher({
+                pageUrl: { hostEquals: "www.amazon.com"}
+            })],
                 actions: [new chrome.declarativeContent.ShowPageAction()]
         }]);
     });
