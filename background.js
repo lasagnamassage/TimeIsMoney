@@ -4,19 +4,6 @@
  * the necessary elements.
  */
 
-const accepted_merchants_list = [
-    'www.amazon.com',
-    'www.etsy.com',
-    'www.redbubble.com',
-    'www.wayfair.com'
-];
-
-let rules = [];
-
-// for(let i = 0; i < accepted_merchants_list.length; i++) {
-//     rules.push(new chrome.declarativeContent.PageStateMatcher({ pageUrl: { hostEquals: accepted_merchants_list[i]}}));
-// }
-
 chrome.runtime.onInstalled.addListener(function() {
     // add an action here
     console.log("Hello from the console!")
@@ -28,5 +15,7 @@ chrome.runtime.onInstalled.addListener(function() {
                 actions: [new chrome.declarativeContent.ShowPageAction()]
         }]);
     });
+    chrome.storage.sync.set({color: '#3aa757'}, function() {
+        console.log("The color is green.");
+    });
 });
-
