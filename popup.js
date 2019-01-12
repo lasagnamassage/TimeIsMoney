@@ -19,5 +19,17 @@ wageSetter.onclick = function() {
     chrome.storage.sync.set({wage: newWage});
     chrome.storage.sync.get('wage', (value) => {
         console.log("value set: " + value.wage);
+        chrome.tabs.executeScript({
+            file: 'contentCrawler.js'
+          });
     });
-  };
+};
+  
+function calculateTime() {
+    if (wage) {
+
+    }
+    else {
+        console.error("[!] Wage not set, calculateTime function cannot run");
+    }
+}
