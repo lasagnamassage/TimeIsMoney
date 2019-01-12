@@ -4,13 +4,25 @@
     <link rel="stylesheet" type="text/css" href="./popup.css">
   </head>
   <body>
-    <h5>Enter Wage</h5>
-    <div id="dollarSign">$</div>
-    <input 
-      type="number"
-      min="0"
-      id="wage"/>
-    <button id="wageSetter">Activate</button>
+    <div id = "UI_Inactive">
+      <h5>Enter Wage</h5>
+      <div id="dollarSign">$</div>
+      <input 
+        type="number"
+        min="0"
+        id="wage"/>
+      <button id="wageSetter">Activate</button>
+    </div>
+    <div id = "UI_Active">
+      <h5>Activated</h5>
+      <p>
+        Hover over a price in the page to see
+        how many hours you need to work to afford
+        the item!
+      </p>
+      <button id="donationButton">Donate</button>
+      <button id="deactivateButton">Deactivate</button>
+    </div>
   </body>
   <script src="popup.js"></script>
 </html>

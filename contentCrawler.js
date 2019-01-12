@@ -1,5 +1,3 @@
-alert("Content crawler activated!");
-
 // USE THESE FOR BETTER PRICE-FINDING IN VERSION 1.1
 // const FORMAT_LONG = /$[0-9]+.[0-9][0-9]/; // $XX.XX  
 // const FORMAT_SHORT = /\$[0-9]+/; // $XX [POSSIBLY TOO GENERAL]

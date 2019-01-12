@@ -1,6 +1,15 @@
 body {
     text-align:center;
     padding:3px;
+    display:flex;
+}
+
+#UI_Active {
+    width:350px;
+}
+
+#UI_Inactive {
+    width:200px;
 }
 
 #dollarSign {
@@ -13,8 +22,12 @@ body {
     margin-bottom:16.63px;
 }
 
-#wageSetter {
-    width:50%;
-    padding:3px;
+button {
+    padding:6px;
+    margin-bottom:15px;
     font-size:13px;
+}
+
+.removed {
+    display:none;
 }
