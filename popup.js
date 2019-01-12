@@ -3,28 +3,21 @@
  * @param {number} wage The user's wage per hour 
  */
 
-let changeColor = document.getElementById('changeColor');
-chrome.storage.sync.get('color', function(data) {
-    changeColor.style.backgroundColor = data.color;
-    changeColor.setAttribute('value', data.color);
+let wage;
+let wageSetter = document.getElementById('wageSetter');
+let input = document.getElementById("wage");
+
+chrome.storage.sync.get('wage', function(value) {
+    if (value) {
+        this.wage = value;
+    }
 });
 
-changeColor.onclick = function(element) {
-    let color = element.target.value;
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.executeScript(
-          tabs[0].id,
-          {code: 'document.body.style.backgroundColor = "' + color + '";'});
+wageSetter.onclick = function() {
+    let newWage = input.value;
+    console.log("Wagesetter clicked with input: " + newWage);
+    chrome.storage.sync.set({wage: newWage});
+    chrome.storage.sync.get('wage', (value) => {
+        console.log("value set: " + value.wage);
     });
   };
-
-// changeColor.addEventListener('click', _ => {
-//     data = '#ff0000';
-//     chrome.storage.sync.set({color: data}, _ => {
-//         console.log("Set color to " + data);
-//     });
-//     chrome.storage.sync.get('color', function(data) {
-//         changeColor.style.backgroundColor = data.color;
-//         changeColor.setAttribute('value', data.color);
-//     });
-// });
