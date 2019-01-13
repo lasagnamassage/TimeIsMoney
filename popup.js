@@ -3,12 +3,15 @@
  * @param {number} wage The user's wage per hour 
  */
 
+
+const DONATIONS_URL = "https://www.ko-fi.com/ashaunthomas";
 let wage;
 let wageSetter = document.getElementById('wageSetter');
 let input = document.getElementById("wage");
 let UI_Inactive = document.getElementById("UI_Inactive");
 let UI_Active = document.getElementById("UI_Active");
 let deactivateButton = document.getElementById("deactivateButton");
+let donationButton = document.getElementById("donationButton");
 let isActive = false;
 
 /**
@@ -45,8 +48,19 @@ wageSetter.onclick = function() {
     // }
 };
 
+/**
+ * Deactivates UI on button click
+ */
 deactivateButton.onclick = function() {
     deactivateUI();
+}
+
+/**
+ * 
+ */
+donationButton.onclick = function() {
+    console.log("Donations function ran");
+    chrome.tabs.create({url: DONATIONS_URL});
 }
   
 /**
