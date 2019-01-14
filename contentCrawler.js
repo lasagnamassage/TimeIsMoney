@@ -14,14 +14,20 @@
 
 let prices = findAmazonPrices();
 let timeObjects = [];
-for (let i = 0; i < prices.length; i++) {
-    timeObjects.push(getTime(prices[i]));
-}
-
-// for (let i = 0; i < prices.length; i++) {
-//     timeObjects.push(getTime(prices[i]));
-// }
-// console.log(this.timeObjects);
+chrome.storage.sync.get('wage', (value) => {
+    for (let i = 0; i < prices.length; i++) {
+        let price = (prices[i].innerHTML).substring(1);
+        let decimalQuotient = price/value.wage;
+        let hours = Math.trunc(decimalQuotient);
+        let minutes = Math.round((decimalQuotient % 1) * 60);
+        let obj = {
+            time: `${hours} hours, ${minutes} minutes`,
+            tag: prices[i]
+        }
+        console.log(obj);
+        generateScript(obj.tag);
+    }
+});
 
 
 
@@ -64,12 +70,25 @@ function getTime(element) {
             time: `${hours} hours, ${minutes} minutes`,
             tag: element
         }
+        // FOR DEBUGGING PURPOSES
         // console.log("wage: " + value.wage);
         // console.log("price: " + price);
         // console.log("decimalQuotient: " + decimalQuotient);
         // console.log("minutes: " + minutes);
         // console.log("hours: " + hours);
-        console.log(obj);
+        //console.log(obj);
         return obj;
     });
+}
+
+/**
+ * Generates script that appends elements to DOM with
+ * given elements collection
+ */
+function generateScript(element) {
+    let pointer = document.createElement("DIV");
+    let textNode = document.createTextNode("APPENDED A THING!!!");
+    pointer.appendChild(textNode);
+    console.log("Tag: " + element);
+    element.appendChild(pointer);
 }
