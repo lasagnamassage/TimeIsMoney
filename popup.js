@@ -22,8 +22,12 @@ window.onload = _ => {
     console.log("onload ran")
     chrome.storage.sync.get('wage', function(value) {
         if (isActive) {
+            console.log("isActive triggered!");
             this.wage = value.wage;
             deactivateUI();
+            chrome.tabs.executeScript({
+                file: 'contentCrawler.js'
+            });
         }
         else {
             activateUI();

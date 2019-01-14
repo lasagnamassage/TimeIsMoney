@@ -12,6 +12,11 @@ body {
     width:200px;
 }
 
+#UI_Active_ButtonArea {
+    display:flex;
+    flex-direction:column;
+}
+
 #dollarSign {
     position:absolute;
     font-size:17px;
@@ -28,6 +33,16 @@ button {
     font-size:13px;
 }
 
+button:hover {
+    cursor:pointer;
+}
+
 .removed {
     display:none;
 }
+
+/*  FADE FOR 1.1
+    @keyframes fade {
+    from {opacity: 1;}
+    to {opacity: 0;}
+} */
