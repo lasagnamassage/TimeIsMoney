@@ -1,0 +1,79 @@
+body {
+    text-align:center;
+    padding:3px;
+    display:flex;
+}
+
+#UI_Active {
+    width:200px;
+}
+
+#UI_Inactive {
+    width:200px;
+}
+
+#UI_Active_ButtonArea {
+    display:flex;
+    flex-direction:column;
+}
+
+#dollarSign {
+    position:absolute;
+    font-size:17px;
+}
+
+#wage {
+    text-align:center;
+    margin-bottom:16.63px;
+}
+
+button {
+    padding:6px;
+    margin-bottom:15px;
+    font-size:13px;
+}
+
+button:hover {
+    cursor:pointer;
+}
+
+.removed {
+    display:none;
+}
+
+.pointer {
+    width: 200px;
+    height: 40px;
+    position: relative;
+    background: green;
+}
+
+.pointer:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+}
+
+.pointer:before {
+    content: "";
+    position: absolute;
+    right: -20px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 20px solid green;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+}
+
+/*  FADE FOR 1.1
+    @keyframes fade {
+    from {opacity: 1;}
+    to {opacity: 0;}
+} */

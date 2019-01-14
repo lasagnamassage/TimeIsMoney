@@ -7,8 +7,6 @@
  * @return Collection of elements that qualily
  */
 
- const MINUTES_IN_HOUR = 60;
-
  /********************************************************
    Algorithm implementation (modularized for simplicity) *
                 (Optimize in 2.0)                        *
@@ -17,7 +15,7 @@
 let prices = findAmazonPrices();
 let timeObjects = [];
 for (let i = 0; i < prices.length; i++) {
-    getTime(prices[i]);
+    timeObjects.push(getTime(prices[i]));
 }
 
 // for (let i = 0; i < prices.length; i++) {
@@ -61,7 +59,7 @@ function getTime(element) {
         let price = (element.innerHTML).substring(1);
         let decimalQuotient = price/value.wage;
         let hours = Math.trunc(decimalQuotient);
-        let minutes = Math.round((decimalQuotient % 1) * MINUTES_IN_HOUR);
+        let minutes = Math.round((decimalQuotient % 1) * 60);
         let obj = {
             time: `${hours} hours, ${minutes} minutes`,
             tag: element
