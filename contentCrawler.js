@@ -25,7 +25,7 @@ chrome.storage.sync.get('wage', (value) => {
             tag: prices[i]
         }
         console.log(obj);
-        generateScript(obj.tag);
+        generateElement(obj.tag);
     }
 });
 
@@ -85,7 +85,7 @@ function getTime(element) {
  * Generates script that appends elements to DOM with
  * given elements collection
  */
-function generateScript(element) {
+function generateElement(element) {
     let pointer = document.createElement("DIV");
     let textNode = document.createTextNode("APPENDED A THING!!!");
     pointer.appendChild(textNode);
