@@ -49,9 +49,16 @@ function findAmazonPrices() {
     let html = document.getElementsByTagName("*");
     let priceElements = [];
     for (let i = 0; i < html.length; i++) {
-        let dollarSign = html[i].innerHTML.charAt(0);
-        if (dollarSign == "$") {
-            priceElements.push(html[i]);
+        let cleanedText = html[i].innerHTML
+            .replace(/\s/g,'')  // removes white spaces
+            .replace(/,/g,''); // removes commas
+        if (cleanedText.charAt(0) == "$") {
+            if (cleanedText.length == 1) { // sibling price parts case 
+                console.log("SIBLING CASE FOR " + html[i].innerHTML);   
+            }
+            else {
+                priceElements.push(html[i]);
+            }
         } 
     }  
     return priceElements;
