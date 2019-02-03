@@ -16,16 +16,18 @@ let prices = findAmazonPrices();
 let timeObjects = [];
 chrome.storage.sync.get('wage', (value) => {
     for (let i = 0; i < prices.length; i++) {
-        let price = (prices[i].innerHTML).substring(1);
+        let dollarSignIndex = prices[i].innerHTML.indexOf('$');
+        let price = (prices[i].innerHTML).slice(dollarSignIndex + 1);
         let decimalQuotient = price/value.wage;
         let hours = Math.trunc(decimalQuotient);
         let minutes = Math.round((decimalQuotient % 1) * 60);
+        console.log(`price: ${price}\ndecimalQuotient: ${decimalQuotient}\nhours: ${hours}\nminutes: ${minutes}`)
         let obj = {
             time: `${hours} hours, ${minutes} minutes`,
             tag: prices[i]
         }
         console.log(obj);
-        generateElement(obj.tag);
+        generateElement(obj);
     }
 });
 
@@ -90,12 +92,12 @@ function getTime(element) {
 
 /**
  * Generates script that appends elements to DOM with
- * given elements collection
+ * given { time: string, tag: HTMLElement } object
  */
-function generateElement(element) {
+function generateElement(object) {
     let pointer = document.createElement("DIV");
-    let textNode = document.createTextNode("APPENDED A THING!!!");
+    pointer.classList = "arrow"
+    let textNode = document.createTextNode(object.time);
     pointer.appendChild(textNode);
-    console.log("Tag: " + element);
-    element.appendChild(pointer);
+    object.tag.appendChild(pointer);
 }
