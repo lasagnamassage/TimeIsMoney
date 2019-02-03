@@ -11,7 +11,7 @@
    Algorithm implementation (modularized for simplicity) *
                 (Optimize in 2.0)                        *
 **********************************************************/
-
+addStyles();
 let prices = findAmazonPrices();
 let timeObjects = [];
 chrome.storage.sync.get('wage', (value) => {
@@ -100,4 +100,15 @@ function generateElement(object) {
     let textNode = document.createTextNode(object.time);
     pointer.appendChild(textNode);
     object.tag.appendChild(pointer);
+}
+
+/**
+ * Dynamically appends stylesheet to pages
+ */
+
+function addStyles() {
+    let sheet = document.createElement('style');
+    sheet.innerHTML = '.arrow { background:lime !important; color:yellow !important;}';
+    document.body.appendChild(sheet);
+    console.log("Sheet added!");
 }

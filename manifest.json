@@ -11,8 +11,7 @@
       },
     "content_scripts": [
         {
-          "matches": ["https://amazon.com/*"],
-          "css": ["contentCrawler.css"]
+          "matches": ["https://amazon.com/*"]
         }
     ],
     "page_action"  :  {
