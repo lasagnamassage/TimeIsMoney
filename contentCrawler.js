@@ -99,7 +99,8 @@ function generateElement(object) {
     pointer.classList = "arrow"
     let textNode = document.createTextNode(object.time);
     pointer.appendChild(textNode);
-    object.tag.appendChild(pointer);
+    object.tag.parentNode.insertBefore(pointer,object.tag.nextSibling);
+    object.tag.classList += ' timPrice';
 }
 
 /**
@@ -108,7 +109,25 @@ function generateElement(object) {
 
 function addStyles() {
     let sheet = document.createElement('style');
-    sheet.innerHTML = '.arrow { background:lime !important; color:yellow !important;}';
+    sheet.innerHTML = `
+        .arrow { 
+            background: lime !important; 
+            color:yellow !important;
+        }
+
+        .timPrice {
+            text-decoration: underline !important;
+        }
+
+        .timPrice::after {
+            content:''
+            background-image:url('icons/icon16.png');
+          }
+
+        .timPrice:hover .arrow {
+            display:block;
+        }
+    `;
     document.body.appendChild(sheet);
     console.log("Sheet added!");
 }
