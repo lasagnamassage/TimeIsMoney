@@ -116,19 +116,28 @@ function addStyles() {
 
         .timPrice::after {
             content:"💰";
+            overflow:hidden;
+            color:teal;
             z-index:99999 !important;
-            transition:0.3s ease-in-out;
+            transition:0.2s ease-in-out;
             position:absolute;
             text-align:left !important;
-            width:1px;
+            width:20px;
             background:none;
           }
 
         .timPrice:hover::after {
             background:yellow;
-            width:100px;
             cursor:pointer;
-            margin-left:-60px;
+            width:100px;
+            margin-left:-50px;
+            animation:addTest 0.5s;
+            animation-fill-mode:forwards;
+        }
+
+        @keyframes addTest {
+            from { content: "💰"}
+            to { content: "💰 8hr 6min"}
         }
     `;
     document.body.appendChild(sheet);
