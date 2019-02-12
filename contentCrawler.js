@@ -98,7 +98,7 @@ function generateElement(object) {
     let a11yBox = document.createElement("DIV");
     a11yBox.classList = "arrow"
     let textNode = document.createTextNode(object.time);
-    pointer.appendChild(textNode);
+    a11yBox.appendChild(textNode);
     object.tag.parentNode.insertBefore(a11yBox, object.tag.nextSibling);
     object.tag.classList += ' timPrice';
 }
