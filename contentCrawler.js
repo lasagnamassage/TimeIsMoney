@@ -95,11 +95,11 @@ function getTime(element) {
  * given { time: string, tag: HTMLElement } object
  */
 function generateElement(object) {
-    // let pointer = document.createElement("DIV");
-    // pointer.classList = "arrow"
-    // let textNode = document.createTextNode(object.time);
-    // pointer.appendChild(textNode);
-    // object.tag.parentNode.insertBefore(pointer,object.tag.nextSibling);
+    let pointer = document.createElement("DIV");
+    pointer.classList = "arrow"
+    let textNode = document.createTextNode(object.time);
+    pointer.appendChild(textNode);
+    object.tag.parentNode.insertBefore(pointer,object.tag.nextSibling);
     object.tag.classList += ' timPrice';
 }
 
@@ -111,20 +111,21 @@ function addStyles() {
     let sheet = document.createElement('style');
     sheet.innerHTML = `
         .arrow { 
-            background: lime !important; 
-            color:yellow !important;
+            visibility:hidden;
         }
 
         .timPrice::after {
             content:"💰";
             z-index:99999 !important;
-            transition:0.5s ease-in-out;
+            transition:0.3s ease-in-out;
             position:absolute;
-            top:-5px;
+            text-align:left !important;
+            width:1px;
+            background:none;
           }
 
         .timPrice:hover::after {
-            background:red;
+            background:yellow;
             width:100px;
             cursor:pointer;
         }
