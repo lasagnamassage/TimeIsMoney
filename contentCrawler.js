@@ -95,11 +95,11 @@ function getTime(element) {
  * given { time: string, tag: HTMLElement } object
  */
 function generateElement(object) {
-    let pointer = document.createElement("DIV");
-    pointer.classList = "arrow"
+    let a11yBox = document.createElement("DIV");
+    a11yBox.classList = "arrow"
     let textNode = document.createTextNode(object.time);
     pointer.appendChild(textNode);
-    object.tag.parentNode.insertBefore(pointer,object.tag.nextSibling);
+    object.tag.parentNode.insertBefore(a11yBox, object.tag.nextSibling);
     object.tag.classList += ' timPrice';
 }
 
@@ -128,6 +128,7 @@ function addStyles() {
             background:yellow;
             width:100px;
             cursor:pointer;
+            margin-left:-60px;
         }
     `;
     document.body.appendChild(sheet);
