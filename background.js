@@ -15,5 +15,6 @@ chrome.runtime.onInstalled.addListener(function() {
     });
     chrome.storage.sync.get('wage', function(value) {
         console.log(value);
+        new chrome.declarativeContent.ShowPageAction();
     });
 });

@@ -11,6 +11,7 @@
    Algorithm implementation (modularized for simplicity) *
                 (Optimize in 2.0)                        *
 **********************************************************/
+
 addStyles();
 let prices = findAmazonPrices();
 let timeObjects = [];
@@ -22,12 +23,15 @@ chrome.storage.sync.get('wage', (value) => {
         let hours = Math.trunc(decimalQuotient);
         let minutes = Math.round((decimalQuotient % 1) * 60);
         console.log(`price: ${price}\ndecimalQuotient: ${decimalQuotient}\nhours: ${hours}\nminutes: ${minutes}`)
-        let obj = {
-            time: `${hours} hours, ${minutes} minutes`,
-            tag: prices[i]
+        if (isNaN(decimalQuotient)) {
+            generateElement(null);
         }
-        console.log(obj);
-        generateElement(obj);
+        else {
+            generateElement({
+                time: `${hours} hr, ${minutes} min`,
+                tag: prices[i]
+            });
+        }
     }
 });
 
@@ -66,40 +70,22 @@ function findAmazonPrices() {
     return priceElements;
 }
 
-/**
- * calculates time for given element with price in innerHTML
- */
-function getTime(element) {
-    chrome.storage.sync.get('wage', (value) => {
-        let price = (element.innerHTML).substring(1);
-        let decimalQuotient = price/value.wage;
-        let hours = Math.trunc(decimalQuotient);
-        let minutes = Math.round((decimalQuotient % 1) * 60);
-        let obj = {
-            time: `${hours} hours, ${minutes} minutes`,
-            tag: element
-        }
-        // FOR DEBUGGING PURPOSES
-        // console.log("wage: " + value.wage);
-        // console.log("price: " + price);
-        // console.log("decimalQuotient: " + decimalQuotient);
-        // console.log("minutes: " + minutes);
-        // console.log("hours: " + hours);
-        //console.log(obj);
-        return obj;
-    });
-}
 
 /**
  * Generates script that appends elements to DOM with
  * given { time: string, tag: HTMLElement } object
  */
 function generateElement(object) {
+    if (!object) {
+        return;
+    }
     let a11yBox = document.createElement("DIV");
     a11yBox.classList = "arrow"
-    let textNode = document.createTextNode(object.time);
+    let textNode = document.createTextNode("⏰" + object.time);
     a11yBox.appendChild(textNode);
-    object.tag.parentNode.insertBefore(a11yBox, object.tag.nextSibling);
+    object.tag.parentNode.appendChild(a11yBox);
+    //object.tag.appendChild(a11yBox);
+    //object.tag.parentNode.insertBefore(a11yBox, object.tag.nextSibling);
     object.tag.classList += ' timPrice';
 }
 
@@ -111,11 +97,16 @@ function addStyles() {
     let sheet = document.createElement('style');
     sheet.innerHTML = `
         .arrow { 
-            visibility:hidden;
+            position:relative;
+            text-decoration:none !important;
+            word-break:break-word;
+        }
+
+        * > .arrow {
+            min-width:200px;
         }
 
         .timPrice::after {
-            content:"💰";
             overflow:hidden;
             color:teal;
             z-index:99999 !important;
@@ -133,11 +124,6 @@ function addStyles() {
             margin-left:-50px;
             animation:addTest 0.5s;
             animation-fill-mode:forwards;
-        }
-
-        @keyframes addTest {
-            from { content: "💰"}
-            to { content: "💰 8hr 6min"}
         }
     `;
     document.body.appendChild(sheet);
