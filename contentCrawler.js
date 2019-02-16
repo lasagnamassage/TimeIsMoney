@@ -102,8 +102,13 @@ function addStyles() {
             word-break:break-word;
         }
 
-        * > .arrow {
+        * > .arrow,
+        .a-button-text {
             min-width:200px;
+        }
+
+        .a-button-text {
+            min-height:80px;
         }
 
         .timPrice::after {
