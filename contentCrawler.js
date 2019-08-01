@@ -13,7 +13,7 @@
 **********************************************************/
 
 addStyles();
-let prices = findAmazonPrices();
+let prices = findPrices();
 let timeObjects = [];
 chrome.storage.sync.get('wage', (value) => {
     for (let i = 0; i < prices.length; i++) {
@@ -51,7 +51,7 @@ chrome.storage.sync.get('wage', (value) => {
  * Space complxity: O(n)
  * @return Array of elements with '$' as first char in innerHTML
  */
-function findAmazonPrices() {
+function findPrices() {
     let html = document.getElementsByTagName("*");
     let priceElements = [];
     for (let i = 0; i < html.length; i++) {
@@ -132,5 +132,4 @@ function addStyles() {
         }
     `;
     document.body.appendChild(sheet);
-    console.log("Sheet added!");
 }

@@ -5,16 +5,14 @@
  */
 
 chrome.runtime.onInstalled.addListener(function() {
-    chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-        chrome.declarativeContent.onPageChanged.addRules([{
-            conditions: [new chrome.declarativeContent.PageStateMatcher({
-                pageUrl: { hostEquals: "www.amazon.com"}
-            })],
-                actions: [new chrome.declarativeContent.ShowPageAction()]
-        }]);
-    });
     chrome.storage.sync.get('wage', function(value) {
         console.log(value);
         new chrome.declarativeContent.ShowPageAction();
     });
+});
+
+chrome.tabs.onUpdated.addListener( function(tabID, changeInfo, tab) {
+    if(changeInfo.status === 'complete') {
+        console.log('THIS RUNS WTF');
+    }
 });
