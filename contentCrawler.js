@@ -22,7 +22,7 @@ chrome.storage.sync.get('wage', (value) => {
         let decimalQuotient = price/value.wage;
         let hours = Math.trunc(decimalQuotient);
         let minutes = Math.round((decimalQuotient % 1) * 60);
-        console.log(`price: ${price}\ndecimalQuotient: ${decimalQuotient}\nhours: ${hours}\nminutes: ${minutes}`)
+        //console.log(`price: ${price}\ndecimalQuotient: ${decimalQuotient}\nhours: ${hours}\nminutes: ${minutes}`)
         if (isNaN(decimalQuotient)) {
             generateElement(null);
         }

@@ -6,13 +6,10 @@
 
 chrome.runtime.onInstalled.addListener(function() {
     chrome.storage.sync.get('wage', function(value) {
-        console.log(value);
+        //console.log(value);
         new chrome.declarativeContent.ShowPageAction();
     });
 });
 
 chrome.tabs.onUpdated.addListener( function(tabID, changeInfo, tab) {
-    if(changeInfo.status === 'complete') {
-        console.log('THIS RUNS WTF');
-    }
 });
