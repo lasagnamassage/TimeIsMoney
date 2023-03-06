@@ -10,3 +10,11 @@ Release Timeline:
     - Coverage for sibling element prices
     - Coverage for ranged prices
     - Popup UI update 
+    
+ 
+## How To Run Locally
+<TODO: If you're an employer, I promise I just updated this so it wasn't empty :)>
+
+## Release
+
+Check it out here: https://chrome.google.com/webstore/detail/timeismoney/pghekmhkfpfooncoclahpbgdggkdifjm?hl=en
